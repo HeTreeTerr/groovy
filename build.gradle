@@ -1,0 +1,39 @@
+group 'com.hss'
+version '1.0-SNAPSHOT'
+
+apply plugin:'java'
+apply plugin:'war'
+
+sourceCompatibility = 1.8
+
+/**
+ * 指定所使用的仓库，mavenCentral()标识号使用中央仓库。
+ * 此刻项目中所需要的jar包都会默认从中央仓库下载到本地指定目录
+ * mavenLocal()
+ * mavenCentral()
+ * 以上配置表示先从本地仓库寻找依赖，如果没有再从中央仓库下载
+ * mavenCentral()
+ * 如果只配置中央仓库，表示直接从中央仓库下载。但是如果指定下
+ * 载的位置已经有了，就不会再次下载
+ */
+repositories {
+    mavenLocal()
+    maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+/*gradle工程所有的jar包的坐标都在dependencies属性内放置
+* 每一个jar包的坐标都是由三个基本元素组成
+* group，name，version
+* testCompile表示该jar包在测试的时候起作用
+* 我们在gradle里面添加坐标的时候都要带上jar包的作用域
+* */
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '5.0.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.7.RELEASE'
+    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
+    providedCompile group: 'javax.servlet', name: 'jsp-api', version: '2.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+}

@@ -1,0 +1,59 @@
+//介绍groovy
+//println("hello groovy");
+//groovy中可以省略语句最末尾的分号
+//println("hello groovy")
+//groovy中可以省略括号
+println "hello groovy";
+
+//groovy中如何定义变量
+//def是弱类型，groovy会自动根据情况来给变量赋予对应的类型
+def i = 18;
+println i;
+
+def j = "张三";
+println j;
+
+//定义一个集合类型
+def list = ['a','b'];
+//往list中添加元素
+list << 'c'
+//取出list中的第三个元素
+println list.get(2)
+
+//定义一个map
+def map = ['key1':'value1','key2':'value2']
+//向map中添加键值对
+map.key3 = 'value3'
+//打印出key的值
+println map.get('key3')
+
+
+//groovy中的闭包
+//什么是闭包？闭包其实就是一段代码块。在gradle中，我们主要是把闭包当参数
+//来使用
+//定义一个闭包
+def b1 = {
+    println 'hello bi';
+}
+//定义个方法，方法里需要闭包类型的吃参数
+def method1(Closure closure){
+    closure();
+}
+
+//调用方法meth1
+method1(b1);
+
+
+//定义一个闭包，带参数
+def b2 = {
+    v->
+        println "hello ${v}"
+}
+
+//定义一个方法，方法里面需要闭包类型的参数
+def method2(Closure closure){
+    closure("小米");
+}
+
+//调用方法method2
+method2(b2);
